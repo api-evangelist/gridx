@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GridX Enterprise Rate Platform API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/token"
+          },
+          "docs": "Returns a JWT bearer token (valid ~1 hour) used to authorize Customer Information and Usage requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Customer Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/customer/info"
+          },
+          "docs": "Returns account attributes: contractId, customerUuid, meterAccountId, rateCode, voltageClass, circuitId, hasCca, cca. Requires Authorization, X-Contract-Id, X-Customer-Uuid headers."
+        },
+        {
+          "info": {
+            "name": "Get Customer Usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/customer/usage?start=2024-07-01T00:00:00Z&end=2024-07-02T00:00:00Z"
+          },
+          "docs": "Returns interval usage payloads (CONSUMPTION, GENERATION, BASELINE_CONSUMPTION, BASELINE_GENERATION) for a date range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/getPricing?utility=PGE&market=&program=&startdate=&enddate=&ratename=&representativeCircuitId=&cca="
+          },
+          "docs": "Returns historical, current, or forecasted dynamic prices with per-interval generation and distribution components. Documented for PG&E and SCE."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OpenADR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/programs"
+          },
+          "docs": "Lists available OpenADR demand-response programs."
+        },
+        {
+          "info": {
+            "name": "Get Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/subscriptions"
+          },
+          "docs": "Retrieves existing OpenADR program subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pge-pe-api.gridx.com/v1/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an OpenADR demand-response program subscription."
+        },
+        {
+          "info": {
+            "name": "Delete Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pge-pe-api.gridx.com/v1/subscriptions"
+          },
+          "docs": "Removes an OpenADR program subscription."
+        }
+      ]
+    }
+  ]
+}

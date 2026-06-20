@@ -1,0 +1,119 @@
+aid: gridx
+name: GridX
+review:
+  question: >-
+    Does GridX (gridx.com) expose a documented developer API, and is this the
+    correct GridX company among several similarly named entities?
+  answer: true
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No real-time streaming, Server-Sent Events, or WebSocket transport is
+    documented for GridX. The documented surface is request/response REST
+    (HTTPS) plus an OpenADR-aligned subscription model that is itself exposed
+    over REST. No AsyncAPI document was created because no streaming surface
+    exists to model.
+companyDisambiguation:
+  target:
+    name: GridX Inc.
+    homepage: https://www.gridx.com
+    headquarters: Walnut Creek, California, USA
+    founded: 2010
+    description: >-
+      The Enterprise Rate Platform for modern utilities. Cloud-based Rate
+      Engine that replicates utility CIS bill calculations, plus modules for
+      rate design, forecasting, analytics, customer engagement, and billing
+      (Design, Forecast, Analyze, Advise, Explore, Empower, Calculate). This
+      is the company described by this catalog entry.
+  notTheSame:
+    - name: gridX GmbH
+      homepage: https://gridx.ai
+      description: >-
+        A DIFFERENT, German energy-IoT company. gridX builds the XENON energy
+        management platform with its own developer API for distributed energy
+        resources (EV charging, heat pumps, PV, batteries). gridX GmbH
+        (gridx.ai) is unrelated to GridX Inc. (gridx.com) despite the similar
+        name. It is NOT covered by this catalog entry.
+    - name: GridX Inc. (battery / EV, Asia)
+      description: >-
+        Battery, EV, and energy-storage ventures operating in Asia have also
+        used the GridX name. These hardware/storage companies are unrelated to
+        the US utility-rate software company at gridx.com and are NOT covered
+        here.
+findings:
+  summary: |
+    GridX Inc. (gridx.com), the Walnut Creek utility-rate software company, DOES
+    expose a documented partner/enterprise developer API. Public API
+    documentation is published at api-calculate-docs.gridx.com (the "Calculate"
+    APIs) and the Empower product is marketed as a set of rate, cost, and bill
+    analysis APIs (empower.gridx.com / gridx.com/empower). The documented host
+    is deployment-specific (e.g., pge-pe-api.gridx.com for PG&E) with a base of
+    /v1 (production) and /stage/v1 (stage). Authentication is JWT bearer tokens
+    obtained from a /token endpoint (~1 hour expiry), with a separate token
+    flow for OpenADR. Documented endpoints include: GET /token, GET
+    /customer/info, GET /customer/usage, GET /getPricing (PG&E and SCE
+    variants), GET /programs, and GET/POST/DELETE /subscriptions (OpenADR).
+    Access is provisioned per utility deployment under enterprise/partner
+    agreement; there is no public self-service signup, free tier, or published
+    pricing/rate-limit rate card. No streaming/WebSocket surface is documented.
+    No endpoints were fabricated; the OpenAPI captures only the documented
+    paths.
+  apiAvailability: partner-enterprise-documented
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://pge-pe-api.gridx.com/v1
+      documented: true
+      note: Deployment-specific host (PG&E shown); /stage/v1 for the test environment.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket or SSE streaming surface is documented for GridX.
+  endpointsConfirmedRest:
+    - GET    https://pge-pe-api.gridx.com/v1/token
+    - GET    https://pge-pe-api.gridx.com/v1/customer/info
+    - GET    https://pge-pe-api.gridx.com/v1/customer/usage
+    - GET    https://pge-pe-api.gridx.com/v1/getPricing
+    - GET    https://pge-pe-api.gridx.com/v1/programs
+    - GET    https://pge-pe-api.gridx.com/v1/subscriptions
+    - POST   https://pge-pe-api.gridx.com/v1/subscriptions
+    - DELETE https://pge-pe-api.gridx.com/v1/subscriptions
+sources:
+  - url: https://www.gridx.com/
+    type: Website
+    note: GridX Inc. homepage - Enterprise Rate Engine for modern utilities; Walnut Creek, CA.
+  - url: https://gridx.com/gridx-enterprise-rate-platform-2/
+    type: Documentation
+    note: Enterprise Rate Platform overview and product modules.
+  - url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+    type: APIReference
+    note: Calculate API docs - getPricing (PG&E/SCE), base URLs, parameters, response components.
+  - url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-info
+    type: APIReference
+    note: Customer Info endpoint - path, JWT auth, X-Contract-Id / X-Customer-Uuid headers, response fields.
+  - url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-usage
+    type: APIReference
+    note: Customer Usage endpoint - interval payloads, start/end params, token auth.
+  - url: https://empower.gridx.com/
+    type: Documentation
+    note: GridX Empower rate/cost/bill analysis APIs landing page.
+  - url: https://gridx.com/empower/
+    type: Documentation
+    note: Empower API categories - Rate Analysis, Bill Analysis, Bill Forecast, Cost Calculation.
+  - url: https://gridx.ai
+    type: Disambiguation
+    note: gridX GmbH (German energy-IoT, XENON platform) - a DIFFERENT company, not covered here.
+actions:
+  apisYmlUpdated: true
+  reason: |
+    GridX gridx.com publishes a real partner/enterprise API surface, so the
+    catalog entry documents four sub-APIs (Rate Engine, Bill Calculation, Rate
+    Analytics, OpenADR Programs) and an OpenAPI with only the documented
+    endpoints. Plans, rate-limits, and finops are marked reconciled:false
+    because GridX does not publish pricing, quotas, or a usage rate card. The
+    company is carefully disambiguated from gridX GmbH (gridx.ai) and from
+    Asia-based GridX battery/EV ventures.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: GridX
+providerId: gridx
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Energy
+- Utilities
+- Rate Engine
+- Billing
+- Rate Analytics
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  GridX's Calculate and Empower APIs are partner/enterprise APIs provisioned per
+  utility deployment. Authentication uses short-lived JWT bearer tokens (roughly
+  one-hour expiry) for the Customer Information and Usage endpoints, with a
+  separate token flow for OpenADR. GridX does not publish specific request-per-
+  minute, request-per-day, or quota values; any rate limiting, concurrency caps,
+  and batch-processing constraints are governed by the deployment contract and
+  are not reconciled in this artifact.
+notes: >-
+  No public rate-limit documentation found. Token expiry (~1 hour) implies clients
+  must refresh credentials. Verify concrete limits and throttling behavior with
+  GridX for the specific utility deployment during reconciliation.
+sources:
+- https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+- https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-info
+- https://gridx.com/empower/
+responseCodes:
+  throttled: 429
+limits:
+- name: API Request Limits
+  scope: deployment
+  metric: requests
+  limit: see provider / contract documentation
+  notes: Not publicly published; governed by the utility deployment agreement.
+- name: Token Expiry
+  scope: account
+  metric: seconds
+  limit: ~3600
+  notes: JWT bearer tokens from the /token endpoint expire after approximately one hour and must be refreshed.
+- name: Batch Rate Analysis
+  scope: deployment
+  metric: jobs
+  limit: see provider / contract documentation
+  notes: Empower batch rate-analysis throughput is contract-governed; not publicly documented.
+policies:
+- name: Token-Based Authentication
+  description: Customer Information/Usage endpoints require a JWT bearer token; OpenADR uses a separate token flow.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,63 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: GridX
+providerId: gridx
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Energy
+- Utilities
+- Rate Engine
+- Billing
+- Rate Analytics
+- Plans
+description: >-
+  GridX sells the Enterprise Rate Platform (Rate Engine, Calculate, Analyze,
+  Design, Forecast, Advise, Explore, Empower) to utilities, energy suppliers,
+  and technology partners under enterprise / partner agreements. There is no
+  public self-service pricing, free tier, or published usage rate card; access
+  to the Calculate and Empower APIs is provisioned through a utility deployment
+  contract and engagement with GridX sales. Pricing details below are not
+  reconciled because GridX does not publish them.
+notes: >-
+  Enterprise/partner sales motion. Contact GridX for pricing. No public
+  pay-as-you-go or tiered rate card was found; verify any terms directly with
+  GridX during reconciliation.
+sources:
+- https://www.gridx.com/
+- https://gridx.com/empower/
+- https://gridx.com/calculate/
+- https://gridx.com/partnerships/
+plans:
+- id: gridx-enterprise
+  name: Enterprise / Partner
+  type: enterprise
+  description: >-
+    Custom enterprise and partner agreements for utilities, energy suppliers,
+    and technology providers deploying the GridX Enterprise Rate Platform and
+    its Calculate / Empower APIs. Terms, entitlements, and pricing are
+    negotiated per deployment.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Rate Engine
+  - name: Calculate (Bill Calculation)
+  - name: Empower APIs (Rate / Bill / Cost Analysis)
+  - name: Analyze
+  - name: Design
+  - name: Forecast
+  - name: OpenADR Programs
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,271 @@
+{
+  "info": {
+    "name": "GridX Enterprise Rate Platform API",
+    "description": "Documented GridX Calculate / pricing-engine API (deployment-specific; PG&E host shown). Token-based JWT auth.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://pge-pe-api.gridx.com/v1"
+    },
+    {
+      "key": "bearerToken",
+      "value": ""
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Get Token",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "token"
+              ]
+            },
+            "description": "Returns a JWT bearer token (valid ~1 hour) used to authorize Customer Information and Usage requests."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customer",
+      "item": [
+        {
+          "name": "Get Customer Info",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{bearerToken}}"
+              },
+              {
+                "key": "X-Contract-Id",
+                "value": "<base64 service agreement id>"
+              },
+              {
+                "key": "X-Customer-Uuid",
+                "value": "<base64 customer uuid>"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customer/info",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customer",
+                "info"
+              ]
+            },
+            "description": "Returns account attributes: contractId, customerUuid, meterAccountId, rateCode, voltageClass, circuitId, hasCca, cca."
+          }
+        },
+        {
+          "name": "Get Customer Usage",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{bearerToken}}"
+              },
+              {
+                "key": "X-Contract-Id",
+                "value": "<base64 service agreement id>"
+              },
+              {
+                "key": "X-Customer-Uuid",
+                "value": "<base64 customer uuid>"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customer/usage?start=2024-07-01T00:00:00Z&end=2024-07-02T00:00:00Z",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customer",
+                "usage"
+              ],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "2024-07-01T00:00:00Z"
+                },
+                {
+                  "key": "end",
+                  "value": "2024-07-02T00:00:00Z"
+                }
+              ]
+            },
+            "description": "Returns interval usage payloads (CONSUMPTION, GENERATION, BASELINE_CONSUMPTION, BASELINE_GENERATION) for a date range."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pricing",
+      "item": [
+        {
+          "name": "Get Pricing",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/getPricing?utility=PGE&market=&program=&startdate=&enddate=&ratename=&representativeCircuitId=&cca=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "getPricing"
+              ],
+              "query": [
+                {
+                  "key": "utility",
+                  "value": "PGE"
+                },
+                {
+                  "key": "market",
+                  "value": ""
+                },
+                {
+                  "key": "program",
+                  "value": ""
+                },
+                {
+                  "key": "startdate",
+                  "value": ""
+                },
+                {
+                  "key": "enddate",
+                  "value": ""
+                },
+                {
+                  "key": "ratename",
+                  "value": ""
+                },
+                {
+                  "key": "representativeCircuitId",
+                  "value": ""
+                },
+                {
+                  "key": "cca",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Returns historical, current, or forecasted dynamic prices with per-interval generation and distribution components. Documented for PG&E and SCE."
+          }
+        }
+      ]
+    },
+    {
+      "name": "OpenADR",
+      "item": [
+        {
+          "name": "Get Programs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/programs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs"
+              ]
+            },
+            "description": "Lists available OpenADR demand-response programs."
+          }
+        },
+        {
+          "name": "Get Subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            },
+            "description": "Retrieves existing OpenADR program subscriptions."
+          }
+        },
+        {
+          "name": "Create Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            },
+            "description": "Creates an OpenADR demand-response program subscription."
+          }
+        },
+        {
+          "name": "Delete Subscription",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            },
+            "description": "Removes an OpenADR program subscription."
+          }
+        }
+      ]
+    }
+  ]
+}
