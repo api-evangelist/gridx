@@ -107,6 +107,8 @@ apis:
     and create, retrieve, and delete program subscriptions - secured with a separate
     token-authentication flow.
 common:
+- type: AgenticAccess
+  url: agentic-access/gridx-agentic-access.yml
 - type: DomainSecurity
   url: security/gridx-domain-security.yml
 - type: Authentication
