@@ -1,0 +1,64 @@
+openapi: 3.0.1
+info:
+  title: GridX Enterprise Rate Platform Authentication OpenADR API
+  description: Partner/enterprise API for the GridX Enterprise Rate Platform. The documented surface (the "Calculate" / pricing-engine APIs) covers dynamic pricing retrieval, customer account info and interval usage, and OpenADR demand-response program subscriptions. Documentation is published per utility deployment; the canonical reference is the PG&E deployment hosted at pge-pe-api.gridx.com, with an equivalent SCE pricing endpoint. Endpoint paths and shapes below reflect the public GridX Calculate API documentation; request and response schemas are summarized and may vary by utility deployment and by the GridX Empower (rate/bill/cost analysis) product contract, which is not fully published. No undocumented endpoints are fabricated here.
+  termsOfService: https://www.gridx.com/
+  contact:
+    name: GridX
+    url: https://www.gridx.com/
+  version: '1.0'
+servers:
+- url: https://pge-pe-api.gridx.com/v1
+  description: PG&E production deployment
+- url: https://pge-pe-api.gridx.com/stage/v1
+  description: PG&E stage (test) deployment
+security:
+- bearerAuth: []
+tags:
+- name: OpenADR
+paths:
+  /programs:
+    get:
+      operationId: getPrograms
+      tags:
+      - OpenADR
+      summary: List demand-response programs
+      description: Lists available OpenADR demand-response programs.
+      responses:
+        '200':
+          description: A list of demand-response programs.
+  /subscriptions:
+    get:
+      operationId: getSubscriptions
+      tags:
+      - OpenADR
+      summary: List program subscriptions
+      description: Retrieves existing OpenADR program subscriptions.
+      responses:
+        '200':
+          description: A list of subscriptions.
+    post:
+      operationId: createSubscription
+      tags:
+      - OpenADR
+      summary: Create a program subscription
+      description: Creates an OpenADR demand-response program subscription.
+      responses:
+        '201':
+          description: Subscription created.
+    delete:
+      operationId: deleteSubscription
+      tags:
+      - OpenADR
+      summary: Delete a program subscription
+      description: Removes an OpenADR program subscription.
+      responses:
+        '204':
+          description: Subscription removed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT bearer token obtained from the /token endpoint (expires ~1 hour).

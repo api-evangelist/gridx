@@ -1,0 +1,78 @@
+openapi: 3.0.1
+info:
+  title: GridX Enterprise Rate Platform Authentication Pricing API
+  description: Partner/enterprise API for the GridX Enterprise Rate Platform. The documented surface (the "Calculate" / pricing-engine APIs) covers dynamic pricing retrieval, customer account info and interval usage, and OpenADR demand-response program subscriptions. Documentation is published per utility deployment; the canonical reference is the PG&E deployment hosted at pge-pe-api.gridx.com, with an equivalent SCE pricing endpoint. Endpoint paths and shapes below reflect the public GridX Calculate API documentation; request and response schemas are summarized and may vary by utility deployment and by the GridX Empower (rate/bill/cost analysis) product contract, which is not fully published. No undocumented endpoints are fabricated here.
+  termsOfService: https://www.gridx.com/
+  contact:
+    name: GridX
+    url: https://www.gridx.com/
+  version: '1.0'
+servers:
+- url: https://pge-pe-api.gridx.com/v1
+  description: PG&E production deployment
+- url: https://pge-pe-api.gridx.com/stage/v1
+  description: PG&E stage (test) deployment
+security:
+- bearerAuth: []
+tags:
+- name: Pricing
+paths:
+  /getPricing:
+    get:
+      operationId: getPricing
+      tags:
+      - Pricing
+      summary: Retrieve dynamic pricing data
+      description: Returns historical, current, or forecasted dynamic prices for a utility, market, program, and rate. Response includes a price header (curve name, market, interval length, currency, settlement unit) and per-interval price components broken down into generation and distribution costs. Documented for PG&E and SCE deployments.
+      parameters:
+      - name: utility
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: market
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: program
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startdate
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: enddate
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: ratename
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: representativeCircuitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: cca
+        in: query
+        required: false
+        description: Community Choice Aggregator code.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Dynamic pricing curve with per-interval components.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT bearer token obtained from the /token endpoint (expires ~1 hour).
