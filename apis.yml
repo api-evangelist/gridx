@@ -9,7 +9,20 @@ description: GridX Inc. (Walnut Creek, California) is the Enterprise Rate Platfo
   APIs) for rate calculation, pricing retrieval, customer info/usage, bill and cost
   analysis, and OpenADR demand-response program subscriptions, currently documented
   for specific utility deployments (e.g., PG&E, SCE).
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/gridx.png
 tags:
 - Energy
 - Utilities
@@ -20,92 +33,102 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: gridx:gridx-rate-engine-api
-  name: GridX Rate Engine API
-  tags:
-  - Rate Engine
-  - Bill Calculation
-  - Pricing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: gridx:gridx-authentication-api
+  name: GridX Authentication API
+  description: The Authentication API from GridX — 1 operation(s) for authentication.
   humanURL: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
   baseURL: https://pge-pe-api.gridx.com/v1
-  properties:
-  - url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
-    type: Documentation
-  - url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
-    type: APIReference
-  - url: openapi/gridx-openapi.yml
-    type: OpenAPI
-  - url: collections/gridx.postman_collection.json
-    type: Postman
-  description: Cloud-based Rate Engine that replicates utility CIS bill calculations.
-    The documented Pricing API returns historical, current, and forecasted dynamic
-    prices (generation and distribution components per interval) for a given utility,
-    market, program, and rate, with examples for PG&E and SCE deployments.
-- aid: gridx:gridx-bill-calculation-api
-  name: GridX Bill Calculation API
   tags:
-  - Bill Calculation
-  - Calculate
-  - Tariffs
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://gridx.com/calculate/
-  baseURL: https://pge-pe-api.gridx.com/v1
+  - Authentication
   properties:
-  - url: https://gridx.com/calculate/
-    type: Documentation
-  - url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-info
-    type: APIReference
-  - url: openapi/gridx-openapi.yml
-    type: OpenAPI
-  - url: collections/gridx.postman_collection.json
-    type: Postman
-  description: GridX Calculate accurately calculates bills based on tariff, contract,
-    rider, option, and tax rules, with real-time rate analysis and the ability to apply
-    modifiers to simulate behavior changes. Documented customer endpoints return account
-    info (rate code, voltage class, circuit, CCA) and interval consumption/generation
-    usage used as inputs to bill calculation.
-- aid: gridx:gridx-rate-analytics-api
-  name: GridX Rate Analytics API
+  - type: OpenAPI
+    url: openapi/gridx-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  - type: APIReference
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  - type: Postman
+    url: collections/gridx.postman_collection.json
+  - type: Documentation
+    url: https://gridx.com/calculate/
+  - type: APIReference
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-info
+  - type: Documentation
+    url: https://empower.gridx.com/
+  - type: APIReference
+    url: https://gridx.com/empower/
+- aid: gridx:gridx-customer-api
+  name: GridX Customer API
+  description: The Customer API from GridX — 2 operation(s) for customer.
+  humanURL: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  baseURL: https://pge-pe-api.gridx.com/v1
   tags:
-  - Rate Analytics
-  - Bill Analysis
-  - Empower
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://empower.gridx.com/
-  baseURL: https://pge-pe-api.gridx.com/v1
+  - Customer
   properties:
-  - url: https://empower.gridx.com/
-    type: Documentation
-  - url: https://gridx.com/empower/
-    type: APIReference
-  - url: openapi/gridx-openapi.yml
-    type: OpenAPI
-  - url: collections/gridx.postman_collection.json
-    type: Postman
-  description: GridX Empower is a set of rate, cost, and bill analysis APIs that deliver
-    personalized insights to engagement channels (MyAccount, portals, mobile, IVR,
-    call center). Categories include Rate Analysis (forward-looking comparison across
-    eligible rates), Bill Analysis and Bill Forecast, and per-interval Cost Calculation.
-- aid: gridx:gridx-openadr-programs-api
-  name: GridX OpenADR Programs API
+  - type: OpenAPI
+    url: openapi/gridx-customer-api-openapi.yml
+  - type: Documentation
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  - type: APIReference
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  - type: Postman
+    url: collections/gridx.postman_collection.json
+  - type: Documentation
+    url: https://gridx.com/calculate/
+  - type: APIReference
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-info
+  - type: Documentation
+    url: https://empower.gridx.com/
+  - type: APIReference
+    url: https://gridx.com/empower/
+- aid: gridx:gridx-openadr-api
+  name: GridX OpenADR API
+  description: The OpenADR API from GridX — 2 operation(s) for openadr.
+  humanURL: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  baseURL: https://pge-pe-api.gridx.com/v1
   tags:
   - OpenADR
-  - Demand Response
-  - Programs
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/gridx-openadr-api-openapi.yml
+  - type: Documentation
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  - type: APIReference
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  - type: Postman
+    url: collections/gridx.postman_collection.json
+  - type: Documentation
+    url: https://gridx.com/calculate/
+  - type: APIReference
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-info
+  - type: Documentation
+    url: https://empower.gridx.com/
+  - type: APIReference
+    url: https://gridx.com/empower/
+- aid: gridx:gridx-pricing-api
+  name: GridX Pricing API
+  description: The Pricing API from GridX — 1 operation(s) for pricing.
   humanURL: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
   baseURL: https://pge-pe-api.gridx.com/v1
+  tags:
+  - Pricing
   properties:
-  - url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
-    type: Documentation
-  - url: openapi/gridx-openapi.yml
-    type: OpenAPI
-  - url: collections/gridx.postman_collection.json
-    type: Postman
-  description: OpenADR-aligned API for demand-response programs - list available programs
-    and create, retrieve, and delete program subscriptions - secured with a separate
-    token-authentication flow.
+  - type: OpenAPI
+    url: openapi/gridx-pricing-api-openapi.yml
+  - type: Documentation
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  - type: APIReference
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
+  - type: Postman
+    url: collections/gridx.postman_collection.json
+  - type: Documentation
+    url: https://gridx.com/calculate/
+  - type: APIReference
+    url: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-info
+  - type: Documentation
+    url: https://empower.gridx.com/
+  - type: APIReference
+    url: https://gridx.com/empower/
 common:
 - type: AgenticAccess
   url: agentic-access/gridx-agentic-access.yml
