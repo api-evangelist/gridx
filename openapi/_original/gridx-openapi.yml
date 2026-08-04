@@ -1,0 +1,220 @@
+openapi: 3.0.1
+info:
+  title: GridX Enterprise Rate Platform API
+  description: >-
+    Partner/enterprise API for the GridX Enterprise Rate Platform. The documented
+    surface (the "Calculate" / pricing-engine APIs) covers dynamic pricing
+    retrieval, customer account info and interval usage, and OpenADR
+    demand-response program subscriptions. Documentation is published per utility
+    deployment; the canonical reference is the PG&E deployment hosted at
+    pge-pe-api.gridx.com, with an equivalent SCE pricing endpoint. Endpoint paths
+    and shapes below reflect the public GridX Calculate API documentation; request
+    and response schemas are summarized and may vary by utility deployment and by
+    the GridX Empower (rate/bill/cost analysis) product contract, which is not
+    fully published. No undocumented endpoints are fabricated here.
+  termsOfService: https://www.gridx.com/
+  contact:
+    name: GridX
+    url: https://www.gridx.com/
+  version: '1.0'
+servers:
+  - url: https://pge-pe-api.gridx.com/v1
+    description: PG&E production deployment
+  - url: https://pge-pe-api.gridx.com/stage/v1
+    description: PG&E stage (test) deployment
+security:
+  - bearerAuth: []
+paths:
+  /token:
+    get:
+      operationId: getToken
+      tags:
+        - Authentication
+      summary: Obtain a JWT bearer token
+      description: >-
+        Returns a JWT bearer token (valid ~1 hour) used to authorize Customer
+        Information and Usage requests. A separate token-authentication flow
+        secures the OpenADR endpoints.
+      responses:
+        '200':
+          description: A JWT token used as the Authorization bearer credential.
+  /customer/info:
+    get:
+      operationId: getCustomerInfo
+      tags:
+        - Customer
+      summary: Retrieve customer account information
+      description: >-
+        Returns account attributes for a service agreement, including contractId,
+        customerUuid, meterAccountId, rateCode, voltageClass,
+        rateCodeHasVoltageClass, circuitId, hasCca, and cca.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: JWT bearer token from the /token endpoint.
+          schema:
+            type: string
+        - name: X-Contract-Id
+          in: header
+          required: true
+          description: Base64-encoded service agreement ID (10 digits, leading zeros).
+          schema:
+            type: string
+        - name: X-Customer-Uuid
+          in: header
+          required: true
+          description: Base64-encoded customer UUID.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer account information.
+  /customer/usage:
+    get:
+      operationId: getCustomerUsage
+      tags:
+        - Customer
+      summary: Retrieve customer interval usage
+      description: >-
+        Returns interval usage payloads (CONSUMPTION, GENERATION,
+        BASELINE_CONSUMPTION, BASELINE_GENERATION) with payloadDescriptors and
+        intervalPeriod metadata for a date range.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: JWT bearer token from the /token endpoint.
+          schema:
+            type: string
+        - name: X-Contract-Id
+          in: header
+          required: true
+          description: Base64-encoded service agreement ID.
+          schema:
+            type: string
+        - name: X-Customer-Uuid
+          in: header
+          required: true
+          description: Base64-encoded customer UUID.
+          schema:
+            type: string
+        - name: start
+          in: query
+          required: true
+          description: Start datetime, e.g. 2024-07-01T00:00:00Z.
+          schema:
+            type: string
+            format: date-time
+        - name: end
+          in: query
+          required: true
+          description: End datetime, e.g. 2024-07-02T00:00:00Z.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Interval usage data.
+  /getPricing:
+    get:
+      operationId: getPricing
+      tags:
+        - Pricing
+      summary: Retrieve dynamic pricing data
+      description: >-
+        Returns historical, current, or forecasted dynamic prices for a utility,
+        market, program, and rate. Response includes a price header (curve name,
+        market, interval length, currency, settlement unit) and per-interval price
+        components broken down into generation and distribution costs. Documented
+        for PG&E and SCE deployments.
+      parameters:
+        - name: utility
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: market
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: program
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startdate
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: enddate
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ratename
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: representativeCircuitId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: cca
+          in: query
+          required: false
+          description: Community Choice Aggregator code.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dynamic pricing curve with per-interval components.
+  /programs:
+    get:
+      operationId: getPrograms
+      tags:
+        - OpenADR
+      summary: List demand-response programs
+      description: Lists available OpenADR demand-response programs.
+      responses:
+        '200':
+          description: A list of demand-response programs.
+  /subscriptions:
+    get:
+      operationId: getSubscriptions
+      tags:
+        - OpenADR
+      summary: List program subscriptions
+      description: Retrieves existing OpenADR program subscriptions.
+      responses:
+        '200':
+          description: A list of subscriptions.
+    post:
+      operationId: createSubscription
+      tags:
+        - OpenADR
+      summary: Create a program subscription
+      description: Creates an OpenADR demand-response program subscription.
+      responses:
+        '201':
+          description: Subscription created.
+    delete:
+      operationId: deleteSubscription
+      tags:
+        - OpenADR
+      summary: Delete a program subscription
+      description: Removes an OpenADR program subscription.
+      responses:
+        '204':
+          description: Subscription removed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT bearer token obtained from the /token endpoint (expires ~1 hour).
