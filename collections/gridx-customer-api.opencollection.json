@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GridX Enterprise Rate Platform Authentication Customer API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve customer account information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/customer/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Contract-Id",
+                "value": ""
+              },
+              {
+                "name": "X-Customer-Uuid",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns account attributes for a service agreement, including contractId, customerUuid, meterAccountId, rateCode, voltageClass, rateCodeHasVoltageClass, circuitId, hasCca, and cca."
+        },
+        {
+          "info": {
+            "name": "Retrieve customer interval usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/customer/usage",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Contract-Id",
+                "value": ""
+              },
+              {
+                "name": "X-Customer-Uuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start datetime, e.g. 2024-07-01T00:00:00Z."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End datetime, e.g. 2024-07-02T00:00:00Z."
+              }
+            ]
+          },
+          "docs": "Returns interval usage payloads (CONSUMPTION, GENERATION, BASELINE_CONSUMPTION, BASELINE_GENERATION) with payloadDescriptors and intervalPeriod metadata for a date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

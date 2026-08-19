@@ -1,0 +1,191 @@
+{
+  "item": [
+    {
+      "id": "cf91019a-14cc-48ab-bdee-ae857b6cc655",
+      "name": "Pricing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fdaee43a-193e-445e-955c-a8317d909952",
+          "name": "Retrieve dynamic pricing data",
+          "request": {
+            "name": "Retrieve dynamic pricing data",
+            "description": {
+              "content": "Returns historical, current, or forecasted dynamic prices for a utility, market, program, and rate. Response includes a price header (curve name, market, interval length, currency, settlement unit) and per-interval price components broken down into generation and distribution costs. Documented for PG&E and SCE deployments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getPricing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "utility",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "program",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ratename",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "representativeCircuitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "cca",
+                  "value": "<string>",
+                  "description": "Community Choice Aggregator code."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73e92ba9-62d7-4ddc-b2fb-81ba80971ad6",
+              "name": "Dynamic pricing curve with per-interval components.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getPricing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "utility",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "program",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ratename",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "representativeCircuitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cca",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://pge-pe-api.gridx.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb0a089b-ce5c-42a2-bc39-8cb84e5d5d8c",
+    "name": "GridX Enterprise Rate Platform Authentication Pricing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partner/enterprise API for the GridX Enterprise Rate Platform. The documented surface (the \"Calculate\" / pricing-engine APIs) covers dynamic pricing retrieval, customer account info and interval usage, and OpenADR demand-response program subscriptions. Documentation is published per utility deployment; the canonical reference is the PG&E deployment hosted at pge-pe-api.gridx.com, with an equivalent SCE pricing endpoint. Endpoint paths and shapes below reflect the public GridX Calculate API documentation; request and response schemas are summarized and may vary by utility deployment and by the GridX Empower (rate/bill/cost analysis) product contract, which is not fully published. No undocumented endpoints are fabricated here.\n\nContact Support:\n Name: GridX",
+      "type": "text/plain"
+    }
+  }
+}

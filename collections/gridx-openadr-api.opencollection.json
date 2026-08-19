@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GridX Enterprise Rate Platform Authentication OpenADR API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OpenADR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List demand-response programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/programs"
+          },
+          "docs": "Lists available OpenADR demand-response programs."
+        },
+        {
+          "info": {
+            "name": "List program subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pge-pe-api.gridx.com/v1/subscriptions"
+          },
+          "docs": "Retrieves existing OpenADR program subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create a program subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pge-pe-api.gridx.com/v1/subscriptions"
+          },
+          "docs": "Creates an OpenADR demand-response program subscription."
+        },
+        {
+          "info": {
+            "name": "Delete a program subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pge-pe-api.gridx.com/v1/subscriptions"
+          },
+          "docs": "Removes an OpenADR program subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

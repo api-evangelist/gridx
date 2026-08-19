@@ -1,0 +1,267 @@
+{
+  "item": [
+    {
+      "id": "afa29218-75b7-4533-84a5-e20dc190b03c",
+      "name": "Customer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88a087e3-a68c-490c-bbb0-76ab30e670ff",
+          "name": "Retrieve customer account information",
+          "request": {
+            "name": "Retrieve customer account information",
+            "description": {
+              "content": "Returns account attributes for a service agreement, including contractId, customerUuid, meterAccountId, rateCode, voltageClass, rateCodeHasVoltageClass, circuitId, hasCca, and cca.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customer",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Base64-encoded service agreement ID (10 digits, leading zeros).",
+                "key": "X-Contract-Id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Base64-encoded customer UUID.",
+                "key": "X-Customer-Uuid",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ca0e701-3029-457e-9447-437ee6a8a65a",
+              "name": "Customer account information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) JWT bearer token from the /token endpoint.",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Base64-encoded service agreement ID (10 digits, leading zeros).",
+                    "key": "X-Contract-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Base64-encoded customer UUID.",
+                    "key": "X-Customer-Uuid",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b45dcc8-defd-4eb6-bc9b-13373fa7ac10",
+          "name": "Retrieve customer interval usage",
+          "request": {
+            "name": "Retrieve customer interval usage",
+            "description": {
+              "content": "Returns interval usage payloads (CONSUMPTION, GENERATION, BASELINE_CONSUMPTION, BASELINE_GENERATION) with payloadDescriptors and intervalPeriod metadata for a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customer",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start datetime, e.g. 2024-07-01T00:00:00Z."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "(Required) End datetime, e.g. 2024-07-02T00:00:00Z."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Base64-encoded service agreement ID.",
+                "key": "X-Contract-Id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Base64-encoded customer UUID.",
+                "key": "X-Customer-Uuid",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c85d1ed9-9c12-4535-8a20-a07f2ccd7d8d",
+              "name": "Interval usage data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) JWT bearer token from the /token endpoint.",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Base64-encoded service agreement ID.",
+                    "key": "X-Contract-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Base64-encoded customer UUID.",
+                    "key": "X-Customer-Uuid",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://pge-pe-api.gridx.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a45893c2-95ce-4c68-8c2b-84f1a1dff4b3",
+    "name": "GridX Enterprise Rate Platform Authentication Customer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partner/enterprise API for the GridX Enterprise Rate Platform. The documented surface (the \"Calculate\" / pricing-engine APIs) covers dynamic pricing retrieval, customer account info and interval usage, and OpenADR demand-response program subscriptions. Documentation is published per utility deployment; the canonical reference is the PG&E deployment hosted at pge-pe-api.gridx.com, with an equivalent SCE pricing endpoint. Endpoint paths and shapes below reflect the public GridX Calculate API documentation; request and response schemas are summarized and may vary by utility deployment and by the GridX Empower (rate/bill/cost analysis) product contract, which is not fully published. No undocumented endpoints are fabricated here.\n\nContact Support:\n Name: GridX",
+      "type": "text/plain"
+    }
+  }
+}
