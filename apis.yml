@@ -63,6 +63,8 @@ apis:
   humanURL: https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing
   baseURL: https://pge-pe-api.gridx.com/v1
   tags:
+  - Customers
+  tags_raw:
   - Customer
   properties:
   - type: OpenAPI
