@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: GridX Enterprise Rate Platform Authentication OpenADR API
-  description: Partner/enterprise API for the GridX Enterprise Rate Platform. The documented surface (the "Calculate" / pricing-engine APIs) covers dynamic pricing retrieval, customer account info and interval usage, and OpenADR demand-response program subscriptions. Documentation is published per utility deployment; the canonical reference is the PG&E deployment hosted at pge-pe-api.gridx.com, with an equivalent SCE pricing endpoint. Endpoint paths and shapes below reflect the public GridX Calculate API documentation; request and response schemas are summarized and may vary by utility deployment and by the GridX Empower (rate/bill/cost analysis) product contract, which is not fully published. No undocumented endpoints are fabricated here.
+  title: GridX Enterprise Rate Platform Open ADR API
+  description: Partner/enterprise API for the GridX Enterprise Rate Platform.
   termsOfService: https://www.gridx.com/
   contact:
     name: GridX
