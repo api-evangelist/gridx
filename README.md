@@ -1,4 +1,4 @@
-# GridX (gridx)
+# GridX
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,116 +66,121 @@
 
 GridX Inc. (Walnut Creek, California) is the Enterprise Rate Platform for modern utilities. Its cloud-based Rate Engine replicates utility billing-system (CIS) bill calculations to design, measure, implement, and bill advanced rates and programs. GridX exposes a partner/enterprise developer API (the Calculate / Empower APIs) for rate calculation, pricing retrieval, customer info/usage, bill and cost analysis, and OpenADR demand-response program subscriptions, currently documented for specific utility deployments (e.g., PG&E, SCE).
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/gridx/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/gridx/refs/heads/main/apis.yml)
+**Areas:** Energy · Utilities · Rate Engine · Billing · Rate Analytics
 
-## Tags
+## GridX on APIs.io
 
-- Energy
-- Utilities
-- Rate Engine
-- Billing
-- Rate Analytics
+Everything profiled for GridX is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gridx/](https://apis.io/providers/gridx/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [GridX Authentication API](https://apis.io/apis/gridx/gridx-authentication-api/) — The Authentication API from GridX — 1 operation(s) for authentication.
+- [GridX Customer API](https://apis.io/apis/gridx/gridx-customer-api/) — The Customer API from GridX — 2 operation(s) for customer.
+- [GridX OpenADR API](https://apis.io/apis/gridx/gridx-openadr-api/) — The OpenADR API from GridX — 2 operation(s) for openadr.
+- [GridX Pricing API](https://apis.io/apis/gridx/gridx-pricing-api/) — The Pricing API from GridX — 1 operation(s) for pricing.
 
-## APIs
+### Published properties
 
-### GridX Rate Engine API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Cloud-based Rate Engine that replicates utility CIS bill calculations. The documented Pricing API returns historical, current, and forecasted dynamic prices (generation and distribution components per interval) for a given utility, market, program, and rate, with examples for PG&E and SCE deployments.
+#### Agentic access (1)
 
-- **Human URL:** [https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing](https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing)
-- **Base URL:** `https://pge-pe-api.gridx.com/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Gridx Agentic Access](https://apis.io/agentic-access/gridx/gridx-agentic-access/)
 
-- Rate Engine
-- Bill Calculation
-- Pricing
+#### Collections (5)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing)
-- [API Reference](https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing)
-- [OpenAPI](openapi/gridx-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/gridx.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/gridx.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [GridX Enterprise Rate Platform API](https://apis.io/collections/gridx/open-gridx/)
+- [GridX Enterprise Rate Platform Authentication API](https://apis.io/collections/gridx/open-gridx-authentication-api/)
+- [GridX Enterprise Rate Platform Authentication Customer API](https://apis.io/collections/gridx/open-gridx-customer-api/)
+- [GridX Enterprise Rate Platform Authentication OpenADR API](https://apis.io/collections/gridx/open-gridx-openadr-api/)
+- [GridX Enterprise Rate Platform Authentication Pricing API](https://apis.io/collections/gridx/open-gridx-pricing-api/)
 
-### GridX Bill Calculation API
+#### Security (2)
 
-GridX Calculate accurately calculates bills based on tariff, contract, rider, option, and tax rules, with real-time rate analysis and the ability to apply modifiers to simulate behavior changes. Documented customer endpoints return account info (rate code, voltage class, circuit, CCA) and interval consumption/generation usage used as inputs to bill calculation.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://gridx.com/calculate/](https://gridx.com/calculate/)
-- **Base URL:** `https://pge-pe-api.gridx.com/v1`
+- [Gridx Authentication](https://apis.io/security/gridx/gridx-authentication/)
+- [Gridx Domain Security](https://apis.io/security/gridx/gridx-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Bill Calculation
-- Calculate
-- Tariffs
+Published plans, tiers and prices.
 
-#### Properties
+- [Gridx Plans Pricing](https://apis.io/plans/gridx/gridx-plans-pricing/)
 
-- [Documentation](https://gridx.com/calculate/)
-- [API Reference](https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-customer-info)
-- [OpenAPI](openapi/gridx-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/gridx.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/gridx.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### GridX Rate Analytics API
+Published request limits.
 
-GridX Empower is a set of rate, cost, and bill analysis APIs that deliver personalized insights to engagement channels (MyAccount, portals, mobile, IVR, call center). Categories include Rate Analysis (forward-looking comparison across eligible rates), Bill Analysis and Bill Forecast, and per-interval Cost Calculation.
+- [Gridx Rate Limits](https://apis.io/rate-limits/gridx/gridx-rate-limits/)
 
-- **Human URL:** [https://empower.gridx.com/](https://empower.gridx.com/)
-- **Base URL:** `https://pge-pe-api.gridx.com/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Rate Analytics
-- Bill Analysis
-- Empower
+- [Gridx Finops](https://apis.io/finops/gridx/gridx-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://empower.gridx.com/)
-- [API Reference](https://gridx.com/empower/)
-- [OpenAPI](openapi/gridx-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/gridx.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/gridx.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### GridX OpenADR Programs API
-
-OpenADR-aligned API for demand-response programs - list available programs and create, retrieve, and delete program subscriptions - secured with a separate token-authentication flow.
-
-- **Human URL:** [https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing](https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing)
-- **Base URL:** `https://pge-pe-api.gridx.com/v1`
-
-#### Tags
-
-- OpenADR
-- Demand Response
-- Programs
-
-#### Properties
-
-- [Documentation](https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing)
-- [OpenAPI](openapi/gridx-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/gridx.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/gridx.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/gridx-inc)
 - [Website](https://www.gridx.com/)
 - [Documentation](https://api-calculate-docs.gridx.com/calculate-apis-gridx-docs/get-pricing)
-- [Plans](plans/gridx-plans-pricing.yml)
-- [Rate Limits](rate-limits/gridx-rate-limits.yml)
-- [Fin Ops](finops/gridx-finops.yml)
+- [Blog](https://gridx.com/blog/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.9** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 9.8** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gridx/](https://apis.io/providers/gridx/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for GridX: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gridx/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
